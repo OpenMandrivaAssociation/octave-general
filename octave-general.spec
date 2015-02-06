@@ -3,7 +3,7 @@
 Summary:	General tools for Octave
 Name:       octave-%{pkgname}
 Version:	1.2.2
-Release:        5
+Release:        6
 Source0:	%{pkgname}-%{version}.tar.gz
 License:	GPLv3+
 Group:		Sciences/Mathematics
