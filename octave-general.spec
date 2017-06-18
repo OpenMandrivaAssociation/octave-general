@@ -1,41 +1,37 @@
-%define	pkgname general
+%define octpkg general
+
+# Exclude .oct files from provides
+%define __provides_exclude_from ^%{octpkglibdir}/.*.oct$
 
 Summary:	General tools for Octave
-Name:       octave-%{pkgname}
-Version:	1.2.2
-Release:        6
-Source0:	%{pkgname}-%{version}.tar.gz
-License:	GPLv3+
+Name:		octave-%{octpkg}
+Version:	2.0.0
+Release:	1
+Source0:	http://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
+License:	GPLv3+ and BSD and Public Domain
 Group:		Sciences/Mathematics
-Url:		http://octave.sourceforge.net/general/
-Conflicts:	octave-forge <= 20090607
-Requires:	octave >= 3.2.4
-BuildRequires:  octave-devel >= 3.2.4
-BuildRequires:  pkgconfig(gl)
-BuildRequires:  pkgconfig(glu)
-Requires:       octave(api) = %{octave_api}
+Url:		https://octave.sourceforge.io/%{octpkg}/
+
+BuildRequires:	octave-devel >= 4.0.0
+
+Requires:	octave(api) = %{octave_api}
+
 Requires(post): octave
 Requires(postun): octave
 
 %description
-General tools for Octave. String dictionary, parallel computing.
+General tools for Octave.
+
+This package is part of community Octave-Forge collection.
 
 %prep
-%setup -q -c %{pkgname}-%{version}
-cp %{SOURCE0} .
+%setup -qcT
+
+%build
+%octave_pkg_build -T
 
 %install
-%__install -m 755 -d %{buildroot}%{_datadir}/octave/packages/
-%__install -m 755 -d %{buildroot}%{_libdir}/octave/packages/
-export OCT_PREFIX=%{buildroot}%{_datadir}/octave/packages
-export OCT_ARCH_PREFIX=%{buildroot}%{_libdir}/octave/packages
-octave -q --eval "pkg prefix $OCT_PREFIX $OCT_ARCH_PREFIX; pkg install -verbose -local %{pkgname}-%{version}.tar.gz"
-
-tar zxf %{SOURCE0} 
-mv %{pkgname}/COPYING .
-mv %{pkgname}/DESCRIPTION .
-
-%clean
+%octave_pkg_install
 
 %post
 %octave_cmd pkg rebuild
@@ -47,6 +43,10 @@ mv %{pkgname}/DESCRIPTION .
 %octave_cmd pkg rebuild
 
 %files
-%doc COPYING DESCRIPTION
-%{_datadir}/octave/packages/%{pkgname}-%{version}
-%{_libdir}/octave/packages/%{pkgname}-%{version}
+%dir %{octpkglibdir}
+%{octpkglibdir}/*
+%dir %{octpkgdir}
+%{octpkgdir}/*
+%doc %{octpkg}-%{version}/NEWS
+%doc %{octpkg}-%{version}/COPYING
+
