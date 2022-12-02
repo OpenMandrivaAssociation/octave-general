@@ -4,10 +4,10 @@ Summary:	General tools for Octave
 Name:		octave-%{octpkg}
 Version:	2.1.2
 Release:	1
-Source0:	http://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
+Source0:	https://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
 License:	GPLv3+ and BSD and Public Domain
 Group:		Sciences/Mathematics
-Url:		https://octave.sourceforge.io/%{octpkg}/
+Url:		https://packages.octave.org/%{octpkg}/
 
 BuildRequires:	octave-devel >= 4.0.0
 
@@ -18,8 +18,6 @@ Requires(postun): octave
 
 %description
 General tools for Octave.
-
-This package is part of community Octave-Forge collection.
 
 %files
 %license COPYING
