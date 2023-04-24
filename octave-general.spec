@@ -1,15 +1,15 @@
 %global octpkg general
 
 Summary:	General tools for Octave
-Name:		octave-%{octpkg}
+Name:		octave-general
 Version:	2.1.2
-Release:	1
-Source0:	https://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
-License:	GPLv3+ and BSD and Public Domain
+Release:	2
+License:	GPLv3+ and BSD-3-Clause and public domain
 Group:		Sciences/Mathematics
-Url:		https://packages.octave.org/%{octpkg}/
+Url:		https://packages.octave.org/general/
+Source0:	https://downloads.sourceforge.net/octave/general-%{version}.tar.gz
 
-BuildRequires:	octave-devel >= 4.0.0
+BuildRequires:  octave-devel >= 4.0.0
 
 Requires:	octave(api) = %{octave_api}
 
@@ -22,19 +22,16 @@ General tools for Octave.
 %files
 %license COPYING
 %doc NEWS
-%dir %{octpkglibdir}
-%{octpkglibdir}/*
 %dir %{octpkgdir}
 %{octpkgdir}/*
+%dir %{octpkglibdir}
+%{octpkglibdir}/*
 %{_metainfodir}/*.metainfo.xml
 
 #---------------------------------------------------------------------------
 
 %prep
 %autosetup -p1 -n %{octpkg}-%{version}
-
-# remove backup files
-#find . -name \*~ -delete
 
 %build
 %set_build_flags
