@@ -2,8 +2,8 @@
 
 Summary:	General tools for Octave
 Name:		octave-general
-Version:	2.1.2
-Release:	2
+Version:	2.1.3
+Release:	1
 License:	GPLv3+ and BSD-3-Clause and public domain
 Group:		Sciences/Mathematics
 Url:		https://packages.octave.org/general/
